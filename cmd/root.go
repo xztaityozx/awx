@@ -30,6 +30,7 @@ import (
 )
 
 var cfgFile string
+var config AwxConfig
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -57,7 +58,7 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.awx.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", PathJoin(os.Getenv("HOME"), ".config/awx/.awx.json"), "config file")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
