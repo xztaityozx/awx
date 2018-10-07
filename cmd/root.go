@@ -80,14 +80,21 @@ func initConfig() {
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
-
+	wd, _ := os.Getwd()
+	viper.SetDefault("BaseDir", wd)
+	viper.SetDefault("ResultNameRule", "Vtp{vtp}Vtn{vtn}")
+	viper.SetDefault("Range", Range{
+		Start: 0,
+		Step:  1,
+		Stop:  20,
+	})
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
 
-	if err:=viper.Unmarshal(&config);err != nil {
+	if err := viper.Unmarshal(&config); err != nil {
 		Fatal(err)
-	} 
-	
+	}
+
 }
