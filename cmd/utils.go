@@ -7,11 +7,11 @@ import (
 )
 
 func Fatal(v ...interface{}) {
-	log.Fatal(v)
+	log.Fatal(v...)
 }
 
 func Print(v ...interface{}) {
-	log.Print(v)
+	log.Print(v...)
 }
 
 func TryMkdirAll(path string) {
