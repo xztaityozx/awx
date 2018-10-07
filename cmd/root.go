@@ -30,6 +30,7 @@ import (
 )
 
 var cfgFile string
+var config AwxConfig
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -57,11 +58,7 @@ func init() {
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.awx.yaml)")
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", PathJoin(os.Getenv("HOME"), ".config/awx/.awx.json"), "config file")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -83,9 +80,21 @@ func initConfig() {
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
-
+	wd, _ := os.Getwd()
+	viper.SetDefault("BaseDir", wd)
+	viper.SetDefault("ResultNameRule", "Vtp{vtp}Vtn{vtn}")
+	viper.SetDefault("Range", Range{
+		Start: 0,
+		Step:  1,
+		Stop:  20,
+	})
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
+
+	if err := viper.Unmarshal(&config); err != nil {
+		Fatal(err)
+	}
+
 }
