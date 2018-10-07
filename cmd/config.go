@@ -1,6 +1,8 @@
 package cmd
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type AwxConfig struct {
 	BaseDir        string
@@ -25,5 +27,20 @@ func NewRange(start float64, step float64, stop float64) Range {
 
 // to command string
 func (r Range) ToCommandString() string {
-	return fmt.Sprintf("sx_export_range %.2f %.2f %.2f", r.Start, r.Step, r.Stop)
+	return fmt.Sprintf("sx_export_range %.2fns %.2fns %.2fns", r.Start, r.Step, r.Stop)
+}
+
+type Task struct {
+	DstDir string
+	SrcDir string
+	Range Range
+}
+
+// make Task struct
+func NewTask(dst string, src string, r Range) Task {
+	return  Task{
+		DstDir:dst,
+		SrcDir:src,
+		Range:r,
+	} 
 }
