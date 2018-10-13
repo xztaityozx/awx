@@ -2,6 +2,7 @@ language: go
 sudo: false
 script:
   - chmod +x ./stub/wv
+  - echo $PATH
   - cp ./stub/wv $HOME/.local/bin/
   - ls $HOME/.local/bin/
   - cd cmd
