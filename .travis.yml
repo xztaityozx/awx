@@ -1,7 +1,8 @@
 language: go
+sudo: false
 script:
   - chmod +x ./stub/wv
-  - cp ./stub/wv /bin/
-  - ls /bin/wv
+  - export PATH="$PATH:$PWD/stub"
+  - echo $PATH
   - cd cmd
   - go test -v
