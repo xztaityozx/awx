@@ -5,7 +5,7 @@
       <change afterPath="$PROJECT_DIR$/cmd/summary.go" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/cmd/summary_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stub/wv" beforeDir="false" afterPath="$PROJECT_DIR$/stub/wv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,18 +45,18 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="9153" />
+          <entry key="go" value="9235" />
           <entry key="ideavimrc" value="91" />
-          <entry key="txt" value="119" />
+          <entry key="txt" value="140" />
           <entry key="wv" value="251" />
-          <entry key="yml" value="144" />
+          <entry key="yml" value="158" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="9153" />
-          <entry key="PLAIN_TEXT" value="461" />
-          <entry key="YAML" value="144" />
+          <entry key="Go" value="9235" />
+          <entry key="PLAIN_TEXT" value="482" />
+          <entry key="YAML" value="158" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -78,8 +78,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cmd/extract.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="782">
-                  <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+                <state relative-caret-position="459">
+                  <caret line="65" column="40" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
                 </state>
               </provider>
             </entry>
@@ -127,7 +127,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/stub/wv">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="38">
@@ -139,8 +139,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cmd/summary.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="133">
-                  <caret line="7" selection-start-line="7" selection-end-line="7" />
+                <state relative-caret-position="171">
+                  <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -148,17 +148,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cmd/summary_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="11" selection-start-column="11" selection-end-column="11" />
+                <state relative-caret-position="114">
+                  <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/.travis.yml">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="6" selection-start-line="6" selection-end-line="6" />
+                <state relative-caret-position="76">
+                  <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -188,15 +188,15 @@
       <list>
         <option value="$USER_HOME$/.ideavimrc" />
         <option value="$PROJECT_DIR$/cmd/root.go" />
-        <option value="$PROJECT_DIR$/.travis.yml" />
         <option value="$PROJECT_DIR$/cmd/extaract_test.go" />
         <option value="$PROJECT_DIR$/cmd/config_test.go" />
         <option value="$PROJECT_DIR$/cmd/config.go" />
         <option value="$PROJECT_DIR$/cmd/extract.go" />
         <option value="$PROJECT_DIR$/cmd/utils.go" />
+        <option value="$PROJECT_DIR$/stub/wv" />
         <option value="$PROJECT_DIR$/cmd/summary.go" />
         <option value="$PROJECT_DIR$/cmd/summary_test.go" />
-        <option value="$PROJECT_DIR$/stub/wv" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
       </list>
     </option>
   </component>
@@ -271,7 +271,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="GO_FMT" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="New&#9;ACTION&#9;NewGroup&#10;commi&#9;ACTION&#9;CheckinProject&#10;con&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config_test.go&#10;config&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config.go&#10;utils&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/utils.go&#10;.&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/.travis.yml&#10;.tra&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/.travis.yml&#10;ex&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/extaract_test.go&#10;Settings&#9;ACTION&#9;Database.Settings&#10;root&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/root.go&#10;settings&#9;ACTION&#9;Database.Settings&#10;terminal&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="comm&#9;ACTION&#9;CheckinProject&#10;New&#9;ACTION&#9;NewGroup&#10;commi&#9;ACTION&#9;CheckinProject&#10;con&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config_test.go&#10;config&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config.go&#10;utils&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/utils.go&#10;.&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/.travis.yml&#10;.tra&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/.travis.yml&#10;ex&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/extaract_test.go&#10;Settings&#9;ACTION&#9;Database.Settings&#10;root&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/root.go&#10;settings&#9;ACTION&#9;Database.Settings&#10;terminal&#9;null&#9;null" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -430,7 +430,8 @@
     <MESSAGE value="branched extract" />
     <MESSAGE value="Update Extract(),SharpingCSV()" />
     <MESSAGE value="Update stub/wv" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update stub/wv" />
+    <MESSAGE value="update stub/wv" />
+    <option name="LAST_COMMIT_MESSAGE" value="update stub/wv" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -459,13 +460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
           <caret line="97" selection-start-line="97" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -505,22 +499,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmd/summary.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="171">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cmd/summary_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
+        <state relative-caret-position="114">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cmd/extract.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+        <state relative-caret-position="459">
+          <caret line="65" column="40" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -528,6 +522,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="2" column="8" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
         </state>
       </provider>
     </entry>

@@ -2,5 +2,6 @@ language: go
 script:
   - chmod +x ./stub/wv
   - cp ./stub/wv /bin/
+  - ls /bin/wv
   - cd cmd
   - go test -v
