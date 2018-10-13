@@ -2,8 +2,7 @@ language: go
 sudo: false
 script:
   - chmod +x ./stub/wv
-  - export PATH="$PATH:$PWD/stub"
-  - echo $PATH
+  - cp ./stub/wv $HOME/.local/bin
   - type wv
   - cd cmd
   - go test -v
