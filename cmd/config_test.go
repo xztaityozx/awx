@@ -64,4 +64,15 @@ func TestAllConfig(t *testing.T) {
 		}
 		Assert(expect.CompareTo(actual), t)
 	})
+
+	t.Run("005_Count", func(t *testing.T) {
+		actual := Range{
+			Start: 2.5,
+			Step:  7.5,
+			Stop:  17.5,
+		}.Count()
+		expect := 3
+
+		Equal(actual, expect, t)
+	})
 }

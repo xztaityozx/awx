@@ -49,4 +49,21 @@ sx_export_data "C.csv" $www`
 		Equal(Cat(task.AcePath), expect, t)
 		RemoveFile(task.AcePath)
 	})
+
+	t.Run("003_Extract", func(t *testing.T) {
+		task := NewTask(dst, src, r, []string{"A"})
+		actual := task.Extract()
+		expect := []string{
+			PathJoin(task.DstDir, "A.csv"),
+		}
+
+		for i, v := range actual {
+			Equal(v, expect[i], t)
+		}
+	})
+
+	t.Run("XXX_Remove", func(t *testing.T) {
+		RemoveFile(dst)
+		RemoveFile(src)
+	})
 }

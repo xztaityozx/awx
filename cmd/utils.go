@@ -43,6 +43,31 @@ func RemoveFile(p string) {
 	}
 }
 
+func MoveFile(src string, dst string) {
+	if err := os.Rename(src, dst); err != nil {
+		Fatal(err)
+	}
+}
+
+func WriteAppend(p string, data string) {
+	fp, err := os.OpenFile(p, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		Fatal(err)
+	}
+
+	defer fp.Close()
+
+	if _, err := fp.WriteString(data); err != nil {
+		Fatal(err)
+	}
+}
+
+func CreateFile(p string) {
+	if _, err := os.Create(p); err != nil {
+		Fatal(err)
+	}
+}
+
 func TryMkdirAll(path string) {
 	if _, ste := os.Stat(path); ste != nil {
 		if err := os.MkdirAll(path, 0755); err != nil {

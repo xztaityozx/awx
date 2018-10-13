@@ -69,3 +69,7 @@ func (t Task) CompareTo(s Task) bool {
 	}
 	return true
 }
+
+func (this Range) Count() int {
+	return (int)((this.Stop-this.Start)/this.Step + 1.0)
+}

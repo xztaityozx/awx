@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e01738c5-64f9-4341-835c-55a83e973d7b" name="Default Changelist" comment="Config">
-      <change afterPath="$PROJECT_DIR$/cmd/extaract_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/awx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/awx.iml" afterDir="false" />
+    <list default="true" id="e01738c5-64f9-4341-835c-55a83e973d7b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/stub/wv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/config.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/config_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/config_test.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/root.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/root.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/extaract_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/extaract_test.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/utils.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,38 +20,46 @@
     <session id="-1674247326">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.5" value="4" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="3" />
+          <entry key="project.open.time.7" value="5" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="ace" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="go" value="14" />
           <entry key="ideavimrc" value="1" />
+          <entry key="sh" value="1" />
+          <entry key="wv" value="2" />
+          <entry key="yml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Go" value="14" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="6" />
+          <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="6200" />
+          <entry key="go" value="9102" />
           <entry key="ideavimrc" value="91" />
-          <entry key="txt" value="30" />
+          <entry key="txt" value="46" />
+          <entry key="wv" value="244" />
+          <entry key="yml" value="144" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="6200" />
-          <entry key="PLAIN_TEXT" value="121" />
+          <entry key="Go" value="9102" />
+          <entry key="PLAIN_TEXT" value="381" />
+          <entry key="YAML" value="144" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -60,17 +67,22 @@
           <entry key="git.branch.create.new" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.go.postfix.template.usages.trigger">
+        <counts>
+          <entry key=".len" value="5" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5479744">
+    <splitter split-orientation="horizontal" split-proportion="0.52818793">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cmd/extract.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="207">
-                  <caret line="51" selection-start-line="51" selection-end-line="51" />
+                <state relative-caret-position="422">
+                  <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -78,8 +90,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cmd/utils.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="401">
-                  <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+                <state relative-caret-position="-7">
+                  <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
                 </state>
               </provider>
             </entry>
@@ -91,26 +103,26 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cmd/root.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="761">
+                <state relative-caret-position="-7">
                   <caret line="97" selection-start-line="97" selection-end-line="97" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cmd/config.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="126">
-                  <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+                <state relative-caret-position="-7">
+                  <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cmd/config_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="617">
-                  <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+                <state relative-caret-position="188">
+                  <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
                 </state>
               </provider>
             </entry>
@@ -118,11 +130,29 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cmd/extaract_test.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="473">
-                  <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+                <state relative-caret-position="-7">
+                  <caret line="58" selection-start-line="58" selection-end-line="58" />
                   <folding>
                     <element signature="e#13#40#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/stub/wv">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/.travis.yml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret line="6" selection-start-line="6" selection-end-line="6" />
                 </state>
               </provider>
             </entry>
@@ -152,11 +182,13 @@
       <list>
         <option value="$USER_HOME$/.ideavimrc" />
         <option value="$PROJECT_DIR$/cmd/root.go" />
+        <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/stub/wv" />
+        <option value="$PROJECT_DIR$/cmd/extaract_test.go" />
         <option value="$PROJECT_DIR$/cmd/utils.go" />
         <option value="$PROJECT_DIR$/cmd/config_test.go" />
-        <option value="$PROJECT_DIR$/cmd/extaract_test.go" />
-        <option value="$PROJECT_DIR$/cmd/extract.go" />
         <option value="$PROJECT_DIR$/cmd/config.go" />
+        <option value="$PROJECT_DIR$/cmd/extract.go" />
       </list>
     </option>
   </component>
@@ -204,6 +236,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,23 +249,27 @@
               <item name="awx" type="462c0819:PsiDirectoryNode" />
               <item name="cmd" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="awx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="awx" type="462c0819:PsiDirectoryNode" />
+              <item name="stub" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="GO_FMT" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="config&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config.go&#10;ex&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/extaract_test.go&#10;con&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config_test.go&#10;Settings&#9;ACTION&#9;Database.Settings&#10;utils&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/utils.go&#10;root&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/root.go&#10;settings&#9;ACTION&#9;Database.Settings&#10;terminal&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="con&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config_test.go&#10;config&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/config.go&#10;utils&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/utils.go&#10;.&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/.travis.yml&#10;.tra&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/.travis.yml&#10;ex&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/extaract_test.go&#10;Settings&#9;ACTION&#9;Database.Settings&#10;root&#9;FILE&#9;file://C:/Users/sldl77/Development/go/src/github.com/xztaityozx/awx/cmd/root.go&#10;settings&#9;ACTION&#9;Database.Settings&#10;terminal&#9;null&#9;null" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="MTCustomThemeConfigurable" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -246,7 +283,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.go test github.com/xztaityozx/awx/cmd">
+  <component name="RunManager" selected="Go Test.TestAllConfig/005_Count in github.com/xztaityozx/awx/cmd">
+    <configuration name="TestAllConfig/005_Count in github.com/xztaityozx/awx/cmd" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="awx" />
+      <working_directory value="$PROJECT_DIR$/cmd" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/xztaityozx/awx/cmd" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestAllConfig$/^005_Count$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestAllExtract/001_mkExtractAce in github.com/xztaityozx/awx/cmd" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="awx" />
       <working_directory value="$PROJECT_DIR$/cmd" />
@@ -294,9 +342,11 @@
       <item itemvalue="Go Test.config_test.go" />
       <item itemvalue="Go Test.TestAllExtract/001_mkExtractAce in github.com/xztaityozx/awx/cmd" />
       <item itemvalue="Go Test.TestAllExtract/002_writeAce in github.com/xztaityozx/awx/cmd" />
+      <item itemvalue="Go Test.TestAllConfig/005_Count in github.com/xztaityozx/awx/cmd" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestAllConfig/005_Count in github.com/xztaityozx/awx/cmd" />
         <item itemvalue="Go Test.go test github.com/xztaityozx/awx/cmd" />
         <item itemvalue="Go Test.TestAllExtract/002_writeAce in github.com/xztaityozx/awx/cmd" />
         <item itemvalue="Go Test.TestAllExtract/001_mkExtractAce in github.com/xztaityozx/awx/cmd" />
@@ -305,12 +355,6 @@
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestAllExtract_002_writeAce_in_github_com_xztaityozx_awx_cmd - 2018.10.10 at 21h 15m 59s.xml">
-      <configuration name="TestAllExtract/002_writeAce in github.com/xztaityozx/awx/cmd" configurationId="GoTestRunConfiguration" />
-    </history-entry>
-    <history-entry file="go_test_github_com_xztaityozx_awx_cmd - 2018.10.10 at 21h 18m 55s.xml">
-      <configuration name="go test github.com/xztaityozx/awx/cmd" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="go_test_github_com_xztaityozx_awx_cmd - 2018.10.10 at 21h 19m 52s.xml">
       <configuration name="go test github.com/xztaityozx/awx/cmd" configurationId="GoTestRunConfiguration" />
     </history-entry>
@@ -335,6 +379,12 @@
     <history-entry file="go_test_github_com_xztaityozx_awx_cmd - 2018.10.10 at 22h 14m 28s.xml">
       <configuration name="go test github.com/xztaityozx/awx/cmd" configurationId="GoTestRunConfiguration" />
     </history-entry>
+    <history-entry file="TestAllConfig_005_Count_in_github_com_xztaityozx_awx_cmd - 2018.10.13 at 21h 16m 01s.xml">
+      <configuration name="TestAllConfig/005_Count in github.com/xztaityozx/awx/cmd" configurationId="GoTestRunConfiguration" />
+    </history-entry>
+    <history-entry file="TestAllConfig_005_Count_in_github_com_xztaityozx_awx_cmd - 2018.10.13 at 21h 16m 34s.xml">
+      <configuration name="TestAllConfig/005_Count in github.com/xztaityozx/awx/cmd" configurationId="GoTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
@@ -356,7 +406,7 @@
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Project" order="4" weight="0.09328358" />
-      <window_info anchor="right" auto_hide="true" id="Run" order="5" weight="0.32889125" />
+      <window_info anchor="right" auto_hide="true" id="Run" order="5" weight="0.3283582" />
       <window_info anchor="right" auto_hide="true" id="Terminal" order="6" weight="0.3400853" />
     </layout>
   </component>
@@ -368,7 +418,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Config" />
-    <option name="LAST_COMMIT_MESSAGE" value="Config" />
+    <MESSAGE value="branched extract" />
+    <option name="LAST_COMMIT_MESSAGE" value="branched extract" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -392,48 +443,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/stub/wv.sh" />
     <entry file="file://$PROJECT_DIR$/cmd/root.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="761">
+        <state relative-caret-position="-7">
           <caret line="97" selection-start-line="97" selection-end-line="97" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/utils.go">
+    <entry file="file://$PROJECT_DIR$/stub/wv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+        <state>
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/extract.go">
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        <state>
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/_A_B_C_1.00_2.00_3.00.ace">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/utils.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-7">
+          <caret line="67" column="4" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cmd/extaract_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+        <state relative-caret-position="-7">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
             <element signature="e#13#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/config_test.go">
+    <entry file="file://$PROJECT_DIR$/cmd/config.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+        <state relative-caret-position="-7">
+          <caret line="73" column="53" selection-start-line="73" selection-start-column="53" selection-end-line="73" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/config.go">
+    <entry file="file://$PROJECT_DIR$/cmd/extract.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="422">
+          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/config_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
         </state>
       </provider>
     </entry>
