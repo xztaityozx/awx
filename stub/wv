@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILE="$3"
+FILE="A.csv"
 
 echo "# LINE1" >> $FILE 
 echo "# LINE2" >> $FILE
@@ -9,3 +9,4 @@ echo "T TIME1" >> $FILE
 echo "1.0000, 2.0000, 3.0000" >> $FILE 
 echo "4.0000, 5.0000, 6.0000" >> $FILE 
 echo "7.0000, 8.0000, 9.0000" >> $FILE
+
