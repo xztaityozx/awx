@@ -35,30 +35,40 @@ var extractCmd = &cobra.Command{
 	Short: "",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		//signals, _ := cmd.Flags().GetStringSlice("signalName")
-		//dst, _ := cmd.Flags().GetString("dst")
-		//src, _ := cmd.Flags().GetString("src")
-		//start, _ := cmd.Flags().GetFloat64("start")
-		//step, _ := cmd.Flags().GetFloat64("step")
-		//stop, _ := cmd.Flags().GetFloat64("stop")
+		signals, _ := cmd.Flags().GetStringSlice("signalName")
+		dst, _ := cmd.Flags().GetString("dst")
+		src, _ := cmd.Flags().GetString("src")
+		start, _ := cmd.Flags().GetFloat64("start")
+		step, _ := cmd.Flags().GetFloat64("step")
+		stop, _ := cmd.Flags().GetFloat64("stop")
+
+		task := NewTask(dst, src, NewRange(start, step, stop), signals)
+		task.Run()
 	},
 }
 
-func Run(task Task) error {
+func (task Task) Run() (Summary, error) {
+	var sum = Summary{
+		Status: false,
+		Files:  []string{},
+	}
+
 	if len(task.Signals) == 0 {
-		return errors.New("awx task error: signals length is 0")
+		return sum, errors.New("awx task error: signals length is 0")
 	}
 
 	if !task.IsValidDirectory() {
-		return errors.New("awx task error: Invalid directory")
+		return sum, errors.New("awx task error: Invalid directory")
 	}
 
 	response := task.Extract()
 	if len(response) != len(task.Signals) {
-		return errors.New("awx task error: Unexpected result task.Extract()")
+		return sum, errors.New("awx task error: Unexpected result task.Extract()")
 	}
 
-	return nil
+	sum.Files = response
+
+	return sum, nil
 }
 
 func (this Task) Extract() []string {

@@ -67,6 +67,19 @@ sx_export_data "C.csv" $www`
 		}
 	})
 
+	t.Run("004_Run", func(t *testing.T) {
+		CreateFile(PathJoin(src, "resultsMap.xml"))
+		CreateFile(PathJoin(src, "results.xml"))
+		task := NewTask(dst, src, Range{
+			Start: 2.5,
+			Step:  7.5,
+			Stop:  17.5,
+		}, []string{"A"})
+		sum, err := task.Run()
+		Assert(err != nil, t)
+		Assert(sum.Status, t)
+	})
+
 	t.Run("XXX_Remove", func(t *testing.T) {
 		RemoveFile(dst)
 		RemoveFile(src)
