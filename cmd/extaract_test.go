@@ -51,7 +51,12 @@ sx_export_data "C.csv" $www`
 	})
 
 	t.Run("003_Extract", func(t *testing.T) {
-		task := NewTask(dst, src, r, []string{"A"})
+		task := NewTask(dst, src, Range{
+			Start: 2.5,
+			Step:  7.5,
+			Stop:  17.5,
+		}, []string{"A"})
+
 		actual := task.Extract()
 		expect := []string{
 			PathJoin(task.DstDir, "A.csv"),
