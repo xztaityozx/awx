@@ -63,8 +63,8 @@ func Run(task Task) error {
 
 func (this Task) Extract() []string {
 	command := exec.Command("bash", "-c", fmt.Sprintf("cd %s && wv -k -ace_no_gui %s &> ./log.wv", this.SrcDir, this.AcePath))
-	if err := command.Run(); err != nil {
-		Fatal(err)
+	if b, err := command.Output(); err != nil {
+		Fatal(err, string(b))
 	}
 
 	var rt []string

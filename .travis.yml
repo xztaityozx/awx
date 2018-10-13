@@ -4,5 +4,6 @@ script:
   - chmod +x ./stub/wv
   - export PATH="$PATH:$PWD/stub"
   - echo $PATH
+  - type wv
   - cd cmd
   - go test -v
