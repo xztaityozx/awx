@@ -57,6 +57,8 @@ func (task Task) Run() (Summary, error) {
 		return sum, errors.New("awx task error: signals length is 0")
 	}
 
+	task.writeAce()
+
 	if !task.IsValidDirectory() {
 		return sum, errors.New("awx task error: Invalid directory")
 	}
