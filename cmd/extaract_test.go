@@ -75,6 +75,7 @@ sx_export_data "C.csv" $www`
 			Step:  7.5,
 			Stop:  17.5,
 		}, []string{"A"})
+		task.writeAce()
 		sum, err := task.Run()
 		Assert(err != nil, t)
 		Assert(sum.Status, t)
