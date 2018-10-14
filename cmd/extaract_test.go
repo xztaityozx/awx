@@ -76,11 +76,9 @@ sx_export_data "C.csv" $www`
 			Stop:  17.5,
 		}, []string{"A"})
 		_, err := task.Run()
-		//task.Run()
 		if err != nil {
 			t.Fatal(err)
 		}
-		//Assert(sum.Status, t)
 	})
 
 	t.Run("XXX_Remove", func(t *testing.T) {
