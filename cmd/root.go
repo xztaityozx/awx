@@ -82,7 +82,6 @@ func initConfig() {
 	viper.AutomaticEnv() // read in environment variables that match
 	wd, _ := os.Getwd()
 	viper.SetDefault("BaseDir", wd)
-	viper.SetDefault("ResultNameRule", "Vtp{vtp}Vtn{vtn}")
 	viper.SetDefault("Range", Range{
 		Start: 0,
 		Step:  1,

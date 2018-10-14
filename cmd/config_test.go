@@ -16,6 +16,10 @@ func Equal(actual interface{}, expect interface{}, t *testing.T) {
 	}
 }
 
+func Throw(t *testing.T) {
+	t.Fatal(t.Name())
+}
+
 func TestAllConfig(t *testing.T) {
 	t.Run("001_NewRange", func(t *testing.T) {
 		actual := NewRange(0, 0, 0)
@@ -44,23 +48,35 @@ func TestAllConfig(t *testing.T) {
 		expect := "sx_export_range 1.00ns 2.00ns 3.00ns"
 		Equal(actual, expect, t)
 	})
-	
+
 	t.Run("004_NewTask", func(t *testing.T) {
-		actual := NewTask("dst","src",Range{
-			Start:10,
-			Step:20,
-			Stop:30,
-		})          
+		actual := NewTask("dst", "src", Range{
+			Start: 10,
+			Step:  20,
+			Stop:  30,
+		}, []string{""})
 		expect := Task{
-			DstDir:"dst",
-			SrcDir:"src",
-			Range:Range{
-				Start:10,
-				Step:20,
-				Stop:30,
+			DstDir: "dst",
+			SrcDir: "src",
+			Range: Range{
+				Start: 10,
+				Step:  20,
+				Stop:  30,
 			},
+			Signals: []string{""},
+			AcePath: "",
 		}
-		Equal(actual,expect,t);
+		Assert(expect.CompareTo(actual), t)
 	})
 
+	t.Run("005_Count", func(t *testing.T) {
+		actual := Range{
+			Start: 2.5,
+			Step:  7.5,
+			Stop:  17.5,
+		}.Count()
+		expect := 3
+
+		Equal(actual, expect, t)
+	})
 }

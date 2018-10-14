@@ -1,4 +1,10 @@
 language: go
+sudo: false
 script:
+  - chmod +x ./stub/wv
+  - echo $PATH
+  - mkdir $HOME/.local/bin/
+  - cp ./stub/wv $HOME/.local/bin/
+  - ls $HOME/.local/bin/
   - cd cmd
   - go test -v

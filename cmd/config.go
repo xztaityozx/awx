@@ -5,9 +5,9 @@ import (
 )
 
 type AwxConfig struct {
-	BaseDir        string
-	Range          Range
-	ResultNameRule string
+	BaseDir string
+	Range   Range
+	WVPath  string
 }
 
 type Range struct {
@@ -31,16 +31,45 @@ func (r Range) ToCommandString() string {
 }
 
 type Task struct {
-	DstDir string
-	SrcDir string
-	Range Range
+	DstDir  string
+	SrcDir  string
+	Range   Range
+	Signals []string
+	AcePath string
 }
 
 // make Task struct
-func NewTask(dst string, src string, r Range) Task {
-	return  Task{
-		DstDir:dst,
-		SrcDir:src,
-		Range:r,
-	} 
+func NewTask(dst string, src string, r Range, signals []string) Task {
+	return Task{
+		DstDir:  dst,
+		SrcDir:  src,
+		Range:   r,
+		Signals: signals,
+		AcePath: "",
+	}
+}
+
+func (t Task) CompareTo(s Task) bool {
+	if t.Range != s.Range {
+		return false
+	}
+	if t.DstDir != s.DstDir {
+		return false
+	}
+	if t.SrcDir != s.SrcDir {
+		return false
+	}
+	if t.AcePath != s.AcePath {
+		return false
+	}
+	for i, v := range t.Signals {
+		if v != s.Signals[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func (this Range) Count() int {
+	return (int)((this.Stop-this.Start)/this.Step + 1.0)
 }
