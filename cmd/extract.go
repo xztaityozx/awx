@@ -69,6 +69,7 @@ func (task Task) Run() (Summary, error) {
 	}
 
 	sum.Files = response
+	sum.Status = true
 
 	return sum, nil
 }
