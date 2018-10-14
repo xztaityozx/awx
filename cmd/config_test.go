@@ -16,6 +16,10 @@ func Equal(actual interface{}, expect interface{}, t *testing.T) {
 	}
 }
 
+func Throw(t *testing.T) {
+	t.Fatal(t.Name())
+}
+
 func TestAllConfig(t *testing.T) {
 	t.Run("001_NewRange", func(t *testing.T) {
 		actual := NewRange(0, 0, 0)

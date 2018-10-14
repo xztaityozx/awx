@@ -75,9 +75,11 @@ sx_export_data "C.csv" $www`
 			Step:  7.5,
 			Stop:  17.5,
 		}, []string{"A"})
-		//sum, err := task.Run()
-		task.Run()
-		//Assert(err != nil, t)
+		_, err := task.Run()
+		//task.Run()
+		if err != nil {
+			t.Fatal(err)
+		}
 		//Assert(sum.Status, t)
 	})
 
