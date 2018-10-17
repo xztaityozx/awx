@@ -27,7 +27,7 @@ func NewRange(start float64, step float64, stop float64) Range {
 
 // to command string
 func (r Range) ToCommandString() string {
-	return fmt.Sprintf("sx_export_range %.2fns %.2fns %.2fns", r.Start, r.Step, r.Stop)
+	return fmt.Sprintf("sx_export_range %.2fns %.2fns %.2fns", r.Start, r.Stop, r.Step)
 }
 
 type Task struct {

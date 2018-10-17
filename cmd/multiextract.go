@@ -1,0 +1,152 @@
+// Copyright © 2018 xztaityozx
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+package cmd
+
+import (
+	"fmt"
+	"io/ioutil"
+	"sync"
+
+	"github.com/spf13/cobra"
+)
+
+// multiextractCmd represents the multiextract command
+var multiextractCmd = &cobra.Command{
+	Use:     "multiextract",
+	Aliases: []string{"mex"},
+	Short:   "",
+	Long:    ``,
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("multiextract called")
+	},
+}
+
+type MultiTask struct {
+	Signals  []string
+	Start    float64
+	Step     float64
+	Stop     float64
+	BaseDir  string
+	Parallel int
+	GC       bool
+}
+
+// Compare MultiTask
+func (s MultiTask) CompareTo(t MultiTask) bool {
+	if len(s.Signals) != len(t.Signals) {
+		return false
+	}
+
+	for key, value := range s.Signals {
+		if value != t.Signals[key] {
+			return false
+		}
+	}
+
+	return s.Parallel == t.Parallel &&
+		s.BaseDir == t.BaseDir &&
+		s.Start == t.Start &&
+		s.Step == t.Step &&
+		s.Stop == t.Stop &&
+		s.GC == t.GC
+}
+
+func (this MultiTask) GenerateTaskSlice() []Task {
+	var rt []Task
+	for _, value := range GetTargetDirectories(this.BaseDir) {
+		dst := PathJoin(this.BaseDir, "../Result", value)
+		src := PathJoin(this.BaseDir, value)
+		r := NewRange(this.Start, this.Step, this.Stop)
+		rt = append(rt, NewTask(dst, src, r, this.Signals))
+	}
+	return rt
+}
+
+func (this MultiTask) Run() Summary {
+	sum := Summary{
+		Files:  []string{},
+		Status: false,
+	}
+
+	lim := make(chan struct{}, this.Parallel)
+	var wg sync.WaitGroup
+
+	for _, value := range this.GenerateTaskSlice() {
+		wg.Add(1)
+		lim <- struct{}{}
+
+		go func(v Task, sum Summary) {
+			defer wg.Done()
+
+			res, err := v.Run()
+			if err != nil {
+				Fatal(err)
+			}
+			sum.Status = sum.Status || res.Status
+			sum.Files = append(sum.Files, res.Files...)
+		}(value, sum)
+
+		<-lim
+	}
+	wg.Wait()
+	return sum
+}
+
+// 処理対象のディレクトリをリストアップする
+func GetTargetDirectories(p string) []string {
+	list, err := ioutil.ReadDir(p)
+	if err != nil {
+		Fatal(err)
+	}
+
+	var rt []string
+	for _, value := range list {
+		if value.IsDir() {
+			rt = append(rt, value.Name())
+		}
+	}
+
+	return rt
+}
+
+// Constructor for MultiTask
+func NewMultiTask(sig []string, start float64, step float64, stop float64, base string, para int, gc bool) MultiTask {
+	return MultiTask{
+		Signals:  sig,
+		Start:    start,
+		Step:     step,
+		Stop:     stop,
+		BaseDir:  base,
+		Parallel: para,
+		GC:       gc,
+	}
+}
+
+func init() {
+	rootCmd.AddCommand(multiextractCmd)
+
+	multiextractCmd.Flags().Bool("GC", false, "作業後波形データを削除します")
+	multiextractCmd.Flags().Int32P("parallel", "P", 1, "並列して実行される数を指定します")
+	multiextractCmd.Flags().StringSliceP("signalName", "S", []string{"N1", "N2", "BLB", "BL"}, "取り出したい波形のリストです")
+	multiextractCmd.Flags().Float64("start", 0, "プロットの最初の時間[ns]です")
+	multiextractCmd.Flags().Float64("step", 0, "プロットの刻み幅[ns]です")
+	multiextractCmd.Flags().Float64("stop", 0, "プロットの最後の時間[ns]です")
+}

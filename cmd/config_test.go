@@ -45,7 +45,7 @@ func TestAllConfig(t *testing.T) {
 
 	t.Run("003_ToCommandString", func(t *testing.T) {
 		actual := NewRange(1, 2, 3).ToCommandString()
-		expect := "sx_export_range 1.00ns 2.00ns 3.00ns"
+		expect := "sx_export_range 1.00ns 3.00ns 2.00ns"
 		Equal(actual, expect, t)
 	})
 

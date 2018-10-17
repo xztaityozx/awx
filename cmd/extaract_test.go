@@ -20,7 +20,7 @@ func TestAllExtract(t *testing.T) {
 		actual := mkExtractAce(NewTask("", "", r, []string{"A", "B", "C"}))
 		expect := `set xml [ sx_open_wdf "resultsMap.xml" ]
 sx_export_csv on
-sx_export_range 1.00ns 2.00ns 3.00ns
+sx_export_range 1.00ns 3.00ns 2.00ns
 set www [ sx_find_wave_in_file $xml A ]
 sx_export_data "A.csv" $www
 set www [ sx_find_wave_in_file $xml B ]
@@ -39,7 +39,7 @@ sx_export_data "C.csv" $www`
 		Assert(IsExistsFile(task.AcePath), t)
 		expect := `set xml [ sx_open_wdf "resultsMap.xml" ]
 sx_export_csv on
-sx_export_range 1.00ns 2.00ns 3.00ns
+sx_export_range 1.00ns 3.00ns 2.00ns
 set www [ sx_find_wave_in_file $xml A ]
 sx_export_data "A.csv" $www
 set www [ sx_find_wave_in_file $xml B ]
