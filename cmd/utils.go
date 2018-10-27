@@ -22,6 +22,15 @@ func IsExistsFile(path string) bool {
 	return true
 }
 
+func IsExistsFiles(paths []string) bool {
+	for _, v := range paths {
+		if !IsExistsFile(v) {
+			return false
+		}
+	}
+	return true
+}
+
 func Cat(p string) string {
 	if b, err := ioutil.ReadFile(p); err != nil {
 		Fatal(err)
@@ -50,6 +59,11 @@ func MoveFile(src string, dst string) {
 }
 
 func WriteAppend(p string, data string) {
+	if !IsExistsFile(p) {
+		if _, err := os.Create(p); err != nil {
+			Fatal(err)
+		}
+	}
 	fp, err := os.OpenFile(p, os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
 		Fatal(err)
