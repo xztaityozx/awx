@@ -17,6 +17,9 @@ func TestAllExtract(t *testing.T) {
 		Stop:  3,
 	}
 	t.Run("001_mkExtractAce", func(t *testing.T) {
+		RemoveFile(PathJoin(src, "A.csv"))
+		RemoveFile(PathJoin(src, "B.csv"))
+		RemoveFile(PathJoin(src, "C.csv"))
 		actual := mkExtractAce(NewTask("", "", r, []string{"A", "B", "C"}))
 		expect := `set xml [ sx_open_wdf "resultsMap.xml" ]
 sx_export_csv on
