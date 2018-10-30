@@ -31,11 +31,13 @@ import (
 
 // countCmd represents the count command
 var countCmd = &cobra.Command{
-	Use:   "count",
-	Short: "",
-	Long:  ``,
+	Use:     "count",
+	Aliases: []string{"cnt"},
+	Short:   "",
+	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("count called")
+		ct := NewCountTask(args)
+		ct.Run()
 	},
 }
 
@@ -44,6 +46,18 @@ type CountTask struct {
 	Rule               string
 	Target             string
 	Parallel           int
+}
+
+func (ct CountTask) Run() {
+	if ct.IsRangeSEEDCountUp {
+		res := ct.RangeSEEDCountUp()
+		for _, v := range res {
+			fmt.Println(v)
+		}
+	} else {
+		res := ct.CountUp()
+		fmt.Println(res)
+	}
 }
 
 // new count task
