@@ -90,6 +90,14 @@ func TryMkdirAll(path string) {
 	}
 }
 
+func Ls(path string) []os.FileInfo {
+	rt, err := ioutil.ReadDir(path)
+	if err != nil {
+		Fatal(err)
+	}
+	return rt
+}
+
 func PathJoin(p ...string) string {
 	return filepath.Join(p...)
 }
