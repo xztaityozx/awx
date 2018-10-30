@@ -19,6 +19,10 @@ func TestAllCount(t *testing.T) {
 	var target string
 
 	t.Run("000_Prepare", func(t *testing.T) {
+		for _, v := range files {
+			RemoveFile(v)
+		}
+
 		WriteAppend(files[0], "1.0000, 2.0000, 3.0000, 4.0000\n")
 		WriteAppend(files[0], "2.0000, 2.0000, 3.0000, 4.0000\n")
 		WriteAppend(files[0], "3.0000, 2.0000, 3.0000, 4.0000\n")
@@ -42,13 +46,11 @@ func TestAllCount(t *testing.T) {
 
 	t.Run("001_NewCountTask", func(t *testing.T) {
 		IsRangeSEEDCountUp = true
-		IgnoreSigma = false
 		RuleFile = ""
 		args := []string{"This is dummy rule", target}
 
 		actual := NewCountTask(args)
 		expect := CountTask{
-			IgnoreSigma:        false,
 			IsRangeSEEDCountUp: true,
 			Rule:               "This is dummy rule",
 			Target:             target,
@@ -58,13 +60,11 @@ func TestAllCount(t *testing.T) {
 	})
 	t.Run("002_NewCountTask", func(t *testing.T) {
 		IsRangeSEEDCountUp = false
-		IgnoreSigma = true
 		RuleFile = rule
 		args := []string{target}
 
 		actual := NewCountTask(args)
 		expect := CountTask{
-			IgnoreSigma:        true,
 			IsRangeSEEDCountUp: false,
 			Rule:               "This is dummy rule",
 			Target:             target,

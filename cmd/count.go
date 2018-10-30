@@ -23,6 +23,10 @@ package cmd
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"strconv"
 )
 
 // countCmd represents the count command
@@ -37,16 +41,15 @@ var countCmd = &cobra.Command{
 
 type CountTask struct {
 	IsRangeSEEDCountUp bool
-	IgnoreSigma        bool
 	Rule               string
 	Target             string
+	Parallel           int
 }
 
 // new count task
 func NewCountTask(args []string) CountTask {
 	var rt = CountTask{
 		IsRangeSEEDCountUp: IsRangeSEEDCountUp,
-		IgnoreSigma:        IgnoreSigma,
 	}
 	// specified rule string from command line
 	if RuleFile == "" && len(args) == 2 {
@@ -65,15 +68,94 @@ func (ct CountTask) GetRuleScript() string {
 	return fmt.Sprintf("BEGIN{s=0}%s{s++}END{print s}", ct.Rule)
 }
 
+func (ct CountTask) CountUp() int64 {
+	command := exec.Command("awk", ct.Target, ct.GetRuleScript())
+	out, err := command.Output()
+	if err != nil {
+		Fatal(err)
+	}
+
+	str := string(out)
+	rt, err := strconv.ParseInt(str, 10, 64)
+	if err != nil {
+		Fatal(err)
+	}
+
+	return rt
+}
+
+func (ct CountTask) RangeSEEDCountUp() []int64 {
+	wd, err := os.Getwd()
+	if err != nil {
+		Fatal(err)
+	}
+
+	if filepath.Dir(wd) != "Result" {
+		Fatal("awx count: Invalid Directory")
+	}
+
+	var dirs []string
+	for _, v := range Ls(wd) {
+		if v.IsDir() && len(v.Name()) == 7 && v.Name()[0:4] == "SEED" {
+			dirs = append(dirs, PathJoin(wd, v.Name()))
+		}
+	}
+
+	result := make([]int64, len(dirs))
+	receiver := ct.CountUpWorker(dirs)
+	for i := 0; i < len(dirs); i++ {
+		pair := <-receiver
+		result[pair.Key] = pair.Value
+	}
+
+	return result
+}
+
+type Pair struct {
+	Key   int
+	Value int64
+}
+
+func (ct CountTask) CountUpWorker(dirs []string) <-chan Pair {
+	receiver := make(chan Pair, ct.Parallel)
+	for i, v := range dirs {
+		src := PathJoin(v, ct.Target)
+		go func(i int, p string) {
+			if !IsExistsFile(p) {
+				receiver <- Pair{
+					Key:   i,
+					Value: -1,
+				}
+				return
+			}
+			command := exec.Command("awk", p, ct.GetRuleScript())
+			out, err := command.Output()
+			if err != nil {
+				Fatal(err)
+			}
+			str := string(out)
+			res, err := strconv.ParseInt(str, 10, 64)
+			if err != nil {
+				Fatal(err)
+			}
+
+			receiver <- Pair{
+				Key:   i,
+				Value: res,
+			}
+		}(i, src)
+	}
+
+	return receiver
+}
+
 var IsRangeSEEDCountUp bool
-var IgnoreSigma bool
 
 var RuleFile string
 
 func init() {
 	rootCmd.AddCommand(countCmd)
 	countCmd.Flags().BoolVarP(&IsRangeSEEDCountUp, "RangeSEED", "R", false, "RangeSEEDシミュレーションの結果を数え上げます")
-	countCmd.Flags().BoolVarP(&IgnoreSigma, "ignoreSigma", "G", false, "Sigmaの値も一緒に出力します")
 	countCmd.Flags().StringVarP(&RuleFile, "ruleFile", "t", "", "ルールを記述したファイルを指定できます")
-	countCmd.Flags().Bool("make", false, "ルールスクリプトを対話形式で作成します")
+	countCmd.Flags().Int32P("Parallel", "P", 1, "並列実行する個数です")
 }
