@@ -90,13 +90,8 @@ func (this MultiTask) GenerateTaskSlice() []Task {
 	return rt
 }
 
-func (mt MultiTask) Remove() {
-	if !mt.GC {
-		return
-	}
 
-}
-
+// TODO: ここの同期処理がクソっぽいので書き直そうね
 func (this MultiTask) Run() Summary {
 	sum := Summary{
 		Files:  []string{},
