@@ -21,8 +21,8 @@
 package cmd
 
 import (
-	"fmt"
 	"io/ioutil"
+	"os"
 	"sync"
 
 	"github.com/spf13/cobra"
@@ -35,7 +35,17 @@ var multiextractCmd = &cobra.Command{
 	Short:   "",
 	Long:    ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("multiextract called")
+		gc, _ := cmd.Flags().GetBool("GC")
+		p, _ := cmd.Flags().GetInt("parallel")
+		sigName, _ := cmd.Flags().GetStringSlice("signalName")
+		start, _ := cmd.Flags().GetFloat64("start")
+		step, _ := cmd.Flags().GetFloat64("step")
+		stop, _ := cmd.Flags().GetFloat64("stop")
+
+		wd, _ := os.Getwd()
+		mt := NewMultiTask(sigName, start, step, stop, wd, p, gc)
+		res := mt.Run()
+		Print(res.ToString())
 	},
 }
 
@@ -78,6 +88,13 @@ func (this MultiTask) GenerateTaskSlice() []Task {
 		rt = append(rt, NewTask(dst, src, r, this.Signals))
 	}
 	return rt
+}
+
+func (mt MultiTask) Remove() {
+	if !mt.GC {
+		return
+	}
+
 }
 
 func (this MultiTask) Run() Summary {
@@ -144,7 +161,7 @@ func init() {
 	rootCmd.AddCommand(multiextractCmd)
 
 	multiextractCmd.Flags().Bool("GC", false, "作業後波形データを削除します")
-	multiextractCmd.Flags().Int32P("parallel", "P", 1, "並列して実行される数を指定します")
+	multiextractCmd.Flags().IntP("parallel", "P", 1, "並列して実行される数を指定します")
 	multiextractCmd.Flags().StringSliceP("signalName", "S", []string{"N1", "N2", "BLB", "BL"}, "取り出したい波形のリストです")
 	multiextractCmd.Flags().Float64("start", 0, "プロットの最初の時間[ns]です")
 	multiextractCmd.Flags().Float64("step", 0, "プロットの刻み幅[ns]です")
