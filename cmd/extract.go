@@ -31,9 +31,10 @@ import (
 
 // extractCmd represents the extract command
 var extractCmd = &cobra.Command{
-	Use:   "extract",
-	Short: "",
-	Long:  ``,
+	Use:     "extract",
+	Short:   "",
+	Long:    ``,
+	Aliases: []string{"ext"},
 	Run: func(cmd *cobra.Command, args []string) {
 		signals, _ := cmd.Flags().GetStringSlice("signalName")
 		dst, _ := cmd.Flags().GetString("dst")
@@ -41,6 +42,8 @@ var extractCmd = &cobra.Command{
 		start, _ := cmd.Flags().GetFloat64("start")
 		step, _ := cmd.Flags().GetFloat64("step")
 		stop, _ := cmd.Flags().GetFloat64("stop")
+
+		TryMkdirAll(dst)
 
 		task := NewTask(dst, src, NewRange(start, step, stop), signals)
 		task.Run()
@@ -70,6 +73,10 @@ func (task Task) Run() (Summary, error) {
 
 	sum.Files = response
 	sum.Status = true
+
+	if sum.Status && task.GC {
+		RemoveFile(task.SrcDir)
+	}
 
 	return sum, nil
 }
@@ -159,7 +166,7 @@ sx_export_csv on
 func init() {
 	rootCmd.AddCommand(extractCmd)
 	wd, _ := os.Getwd()
-	extractCmd.Flags().StringP("dst", "d", config.BaseDir, "書き出しディレクトリです")
+	extractCmd.Flags().StringP("dst", "d", "../Result", "書き出しディレクトリです")
 	extractCmd.Flags().StringP("src", "s", wd, "ターゲットのディレクトリです")
 	extractCmd.Flags().StringSliceP("signalName", "S", []string{"N1", "N2", "BLB", "BL"}, "取り出したい波形のリストです")
 	extractCmd.Flags().Float64("start", 0, "プロットの最初の時間[ns]です")

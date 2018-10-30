@@ -36,6 +36,7 @@ type Task struct {
 	Range   Range
 	Signals []string
 	AcePath string
+	GC      bool
 }
 
 // make Task struct
