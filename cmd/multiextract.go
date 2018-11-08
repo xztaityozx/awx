@@ -21,11 +21,9 @@
 package cmd
 
 import (
+	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
-	"sync"
-
-	"github.com/spf13/cobra"
 )
 
 // multiextractCmd represents the multiextract command
@@ -91,34 +89,37 @@ func (this MultiTask) GenerateTaskSlice() []Task {
 }
 
 
-// TODO: ここの同期処理がクソっぽいので書き直そうね
+// TODO: ここの非同期処理がクソっぽいので書き直そうね
 func (this MultiTask) Run() Summary {
 	sum := Summary{
 		Files:  []string{},
 		Status: false,
 	}
 
-	lim := make(chan struct{}, this.Parallel)
-	var wg sync.WaitGroup
-
-	for _, value := range this.GenerateTaskSlice() {
-		wg.Add(1)
-		lim <- struct{}{}
-
-		go func(v Task, sum Summary) {
-			defer wg.Done()
-
-			res, err := v.Run()
-			if err != nil {
-				Fatal(err)
-			}
-			sum.Status = sum.Status || res.Status
-			sum.Files = append(sum.Files, res.Files...)
-		}(value, sum)
-
-		<-lim
+	
+	worker := func(tasks []Task) <- chan Summary {
+		rt := make(chan Summary, len(tasks))
+		for _, value := range tasks {
+			go func(t Task){
+				res,err := t.Run()
+				if err != nil {
+					Fatal(err)
+				}
+				rt<-res
+			}(value)
+		}
+		return rt
 	}
-	wg.Wait()
+	tasks := this.GenerateTaskSlice()
+	receiver := worker(tasks)
+
+	for i := 0; i< len(tasks); i++ {
+		res := <-receiver
+		sum.Status = sum.Status && res.Status
+		sum.Files = append(sum.Files, res.Files...)
+	}
+		
+	
 	return sum
 }
 
