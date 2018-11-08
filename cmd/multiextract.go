@@ -89,7 +89,6 @@ func (this MultiTask) GenerateTaskSlice() []Task {
 }
 
 
-// TODO: ここの非同期処理がクソっぽいので書き直そうね
 func (this MultiTask) Run() Summary {
 	sum := Summary{
 		Files:  []string{},

@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
+	"path/filepath"
 	"testing"
 )
 
@@ -85,8 +87,21 @@ sx_export_data "C.csv" $www`
 		Assert(sum.Status, t)
 	})
 
+	t.Run("005_ToString", func(t *testing.T) {
+		task := NewTask(dst, src, Range{
+			Start: 2.5,
+			Step:  7.5,
+			Stop:  17.5,
+		}, []string{"A"})
+
+		actual := task.ToString()
+		expect := fmt.Sprintf("ext %s => %v",filepath.Base(task.SrcDir),task.Signals)
+		Equal(actual,expect,t)
+	})
+
 	t.Run("XXX_Remove", func(t *testing.T) {
 		RemoveFile(dst)
 		RemoveFile(src)
 	})
+
 }
