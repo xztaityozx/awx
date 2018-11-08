@@ -56,7 +56,7 @@ var extractCmd = &cobra.Command{
 func (task Task) Run() (Summary, error) {
 
 	spin := spinner.New(spinner.CharSets[14], time.Millisecond*50)
-	spin.Suffix = task.ToString()
+	spin.Suffix = task.ToString() + "\n"
 	spin.FinalMSG = "Finished!"
 	defer spin.Stop()
 	spin.Start()
