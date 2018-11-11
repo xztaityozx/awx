@@ -91,48 +91,45 @@ func (this MultiTask) GenerateTaskSlice() []Task {
 	return rt
 }
 
-
 func (this MultiTask) Run() Summary {
 	sum := Summary{
 		Files:  []string{},
 		Status: false,
 	}
 
-	
-	worker := func(tasks []Task) <- chan Summary {
+	worker := func(tasks []Task) <-chan Summary {
 		rt := make(chan Summary, len(tasks))
 		for _, value := range tasks {
-			go func(t Task){
-				res,err := t.Run()
+			go func(t Task) {
+				res, err := t.Run()
 				if err != nil {
 					Fatal(err)
 				}
-				rt<-res
+				rt <- res
 			}(value)
 		}
 		return rt
 	}
 	tasks := this.GenerateTaskSlice()
 
-	spin := spinner.New(spinner.CharSets[14],time.Millisecond * 50)
-	spin.Prefix="Multi Extract "
+	spin := spinner.New(spinner.CharSets[14], time.Millisecond*50)
+	spin.Prefix = "Multi Extract "
 	spin.Writer = os.Stderr
 	spin.FinalMSG = "Multi Extract Finished!"
 	defer spin.Stop()
-	spin.Suffix=fmt.Sprintf("Task %d/%d",0, len(tasks))
+	spin.Suffix = fmt.Sprintf("Task %d/%d", 0, len(tasks))
 
 	spin.Start()
 
 	receiver := worker(tasks)
 
-	for i := 0; i< len(tasks); i++ {
+	for i := 0; i < len(tasks); i++ {
+		spin.Suffix = fmt.Sprintf("Task %d/%d", i, len(tasks))
 		res := <-receiver
-		spin.Suffix= fmt.Sprintf("Task %d/%d",i, len(tasks))
 		sum.Status = sum.Status && res.Status
 		sum.Files = append(sum.Files, res.Files...)
 	}
-		
-	
+
 	return sum
 }
 
