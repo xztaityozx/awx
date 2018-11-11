@@ -55,22 +55,22 @@ sx_export_data "C.csv" $www`
 		RemoveFile(task.AcePath)
 	})
 
-	t.Run("003_Extract", func(t *testing.T) {
-		task := NewTask(dst, src, Range{
-			Start: 2.5,
-			Step:  7.5,
-			Stop:  17.5,
-		}, []string{"A"})
-
-		actual := task.Extract()
-		expect := []string{
-			PathJoin(task.DstDir, "A.csv"),
-		}
-
-		for i, v := range actual {
-			Equal(v, expect[i], t)
-		}
-	})
+	//t.Run("003_Extract", func(t *testing.T) {
+	//	task := NewTask(dst, src, Range{
+	//		Start: 2.5,
+	//		Step:  7.5,
+	//		Stop:  17.5,
+	//	}, []string{"A"})
+	//
+	//	actual := task.Extract()
+	//	expect := []string{
+	//		PathJoin(task.DstDir, "A.csv"),
+	//	}
+	//
+	//	for i, v := range actual {
+	//		Equal(v, expect[i], t)
+	//	}
+	//})
 
 	t.Run("004_Run", func(t *testing.T) {
 		CreateFile(PathJoin(src, "resultsMap.xml"))
@@ -95,8 +95,8 @@ sx_export_data "C.csv" $www`
 		}, []string{"A"})
 
 		actual := task.ToString()
-		expect := fmt.Sprintf("ext %s => %v",filepath.Base(task.SrcDir),task.Signals)
-		Equal(actual,expect,t)
+		expect := fmt.Sprintf("ext %s => %v", filepath.Base(task.SrcDir), task.Signals)
+		Equal(actual, expect, t)
 	})
 
 	t.Run("XXX_Remove", func(t *testing.T) {

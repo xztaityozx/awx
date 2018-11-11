@@ -49,7 +49,7 @@ var extractCmd = &cobra.Command{
 		TryMkdirAll(dst)
 
 		task := NewTask(dst, src, NewRange(start, step, stop), signals)
-		s := spinner.New(spinner.CharSets[14],time.Millisecond*50)
+		s := spinner.New(spinner.CharSets[14], time.Millisecond*50)
 		s.Suffix = task.ToString()
 		s.FinalMSG = "Finished!"
 		defer s.Stop()
@@ -60,7 +60,6 @@ var extractCmd = &cobra.Command{
 }
 
 func (task Task) Run() (Summary, error) {
-
 
 	var sum = Summary{
 		Status: false,
