@@ -21,11 +21,12 @@
 package cmd
 
 import (
+	"fmt"
+	"github.com/briandowns/spinner"
+	"github.com/spf13/cobra"
 	"io/ioutil"
 	"os"
-	"sync"
-
-	"github.com/spf13/cobra"
+	"time"
 )
 
 // multiextractCmd represents the multiextract command
@@ -90,40 +91,45 @@ func (this MultiTask) GenerateTaskSlice() []Task {
 	return rt
 }
 
-func (mt MultiTask) Remove() {
-	if !mt.GC {
-		return
-	}
-
-}
-
 func (this MultiTask) Run() Summary {
 	sum := Summary{
 		Files:  []string{},
 		Status: false,
 	}
 
-	lim := make(chan struct{}, this.Parallel)
-	var wg sync.WaitGroup
-
-	for _, value := range this.GenerateTaskSlice() {
-		wg.Add(1)
-		lim <- struct{}{}
-
-		go func(v Task, sum Summary) {
-			defer wg.Done()
-
-			res, err := v.Run()
-			if err != nil {
-				Fatal(err)
-			}
-			sum.Status = sum.Status || res.Status
-			sum.Files = append(sum.Files, res.Files...)
-		}(value, sum)
-
-		<-lim
+	worker := func(tasks []Task) <-chan Summary {
+		rt := make(chan Summary, len(tasks))
+		for _, value := range tasks {
+			go func(t Task) {
+				res, err := t.Run()
+				if err != nil {
+					Fatal(err)
+				}
+				rt <- res
+			}(value)
+		}
+		return rt
 	}
-	wg.Wait()
+	tasks := this.GenerateTaskSlice()
+
+	spin := spinner.New(spinner.CharSets[14], time.Millisecond*50)
+	spin.Prefix = "Multi Extract "
+	spin.Writer = os.Stderr
+	spin.FinalMSG = "Multi Extract Finished!"
+	defer spin.Stop()
+	spin.Suffix = fmt.Sprintf("Task %d/%d", 0, len(tasks))
+
+	spin.Start()
+
+	receiver := worker(tasks)
+
+	for i := 0; i < len(tasks); i++ {
+		spin.Suffix = fmt.Sprintf("Task %d/%d", i, len(tasks))
+		res := <-receiver
+		sum.Status = sum.Status && res.Status
+		sum.Files = append(sum.Files, res.Files...)
+	}
+
 	return sum
 }
 

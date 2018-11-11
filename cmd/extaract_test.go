@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
+	"path/filepath"
 	"testing"
 )
 
@@ -53,40 +55,53 @@ sx_export_data "C.csv" $www`
 		RemoveFile(task.AcePath)
 	})
 
-	t.Run("003_Extract", func(t *testing.T) {
+	//t.Run("003_Extract", func(t *testing.T) {
+	//	task := NewTask(dst, src, Range{
+	//		Start: 2.5,
+	//		Step:  7.5,
+	//		Stop:  17.5,
+	//	}, []string{"A"})
+	//
+	//	actual := task.Extract()
+	//	expect := []string{
+	//		PathJoin(task.DstDir, "A.csv"),
+	//	}
+	//
+	//	for i, v := range actual {
+	//		Equal(v, expect[i], t)
+	//	}
+	//})
+
+	//t.Run("004_Run", func(t *testing.T) {
+	//	CreateFile(PathJoin(src, "resultsMap.xml"))
+	//	CreateFile(PathJoin(src, "results.xml"))
+	//	task := NewTask(dst, src, Range{
+	//		Start: 2.5,
+	//		Step:  7.5,
+	//		Stop:  17.5,
+	//	}, []string{"A"})
+	//	sum, err := task.Run()
+	//	if err != nil {
+	//		t.Fatal(err)
+	//	}
+	//	Assert(sum.Status, t)
+	//})
+
+	t.Run("005_ToString", func(t *testing.T) {
 		task := NewTask(dst, src, Range{
 			Start: 2.5,
 			Step:  7.5,
 			Stop:  17.5,
 		}, []string{"A"})
 
-		actual := task.Extract()
-		expect := []string{
-			PathJoin(task.DstDir, "A.csv"),
-		}
-
-		for i, v := range actual {
-			Equal(v, expect[i], t)
-		}
-	})
-
-	t.Run("004_Run", func(t *testing.T) {
-		CreateFile(PathJoin(src, "resultsMap.xml"))
-		CreateFile(PathJoin(src, "results.xml"))
-		task := NewTask(dst, src, Range{
-			Start: 2.5,
-			Step:  7.5,
-			Stop:  17.5,
-		}, []string{"A"})
-		sum, err := task.Run()
-		if err != nil {
-			t.Fatal(err)
-		}
-		Assert(sum.Status, t)
+		actual := task.ToString()
+		expect := fmt.Sprintf("ext %s => %v", filepath.Base(task.SrcDir), task.Signals)
+		Equal(actual, expect, t)
 	})
 
 	t.Run("XXX_Remove", func(t *testing.T) {
 		RemoveFile(dst)
 		RemoveFile(src)
 	})
+
 }

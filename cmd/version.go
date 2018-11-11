@@ -27,7 +27,7 @@ import (
 	"github.com/xztaityozx/go-version"
 )
 
-var AwxVersion version.Version = version.New(0, 0, 1, version.BETA, "2018/10/05")
+var AwxVersion version.Version = version.New(0, 0, 2, version.BETA, "2018/11/08")
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{

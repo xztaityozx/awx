@@ -23,10 +23,13 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	"github.com/briandowns/spinner"
 	"github.com/spf13/cobra"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
+	"time"
 )
 
 // extractCmd represents the extract command
@@ -46,11 +49,18 @@ var extractCmd = &cobra.Command{
 		TryMkdirAll(dst)
 
 		task := NewTask(dst, src, NewRange(start, step, stop), signals)
+		s := spinner.New(spinner.CharSets[14], time.Millisecond*50)
+		s.Suffix = task.ToString()
+		s.FinalMSG = "Finished!"
+		defer s.Stop()
+		s.Start()
+
 		task.Run()
 	},
 }
 
 func (task Task) Run() (Summary, error) {
+
 	var sum = Summary{
 		Status: false,
 		Files:  []string{},
@@ -128,6 +138,10 @@ func ShapingCSV(p string, dst string, step int) {
 		WriteAppend(dst, fmt.Sprintf("%s\n", store[i+step-1]))
 	}
 
+}
+
+func (t Task) ToString() string {
+	return fmt.Sprintf("ext %s => %v", filepath.Base(t.SrcDir), t.Signals)
 }
 
 // Check Valid Directory
