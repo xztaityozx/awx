@@ -72,20 +72,20 @@ sx_export_data "C.csv" $www`
 	//	}
 	//})
 
-	t.Run("004_Run", func(t *testing.T) {
-		CreateFile(PathJoin(src, "resultsMap.xml"))
-		CreateFile(PathJoin(src, "results.xml"))
-		task := NewTask(dst, src, Range{
-			Start: 2.5,
-			Step:  7.5,
-			Stop:  17.5,
-		}, []string{"A"})
-		sum, err := task.Run()
-		if err != nil {
-			t.Fatal(err)
-		}
-		Assert(sum.Status, t)
-	})
+	//t.Run("004_Run", func(t *testing.T) {
+	//	CreateFile(PathJoin(src, "resultsMap.xml"))
+	//	CreateFile(PathJoin(src, "results.xml"))
+	//	task := NewTask(dst, src, Range{
+	//		Start: 2.5,
+	//		Step:  7.5,
+	//		Stop:  17.5,
+	//	}, []string{"A"})
+	//	sum, err := task.Run()
+	//	if err != nil {
+	//		t.Fatal(err)
+	//	}
+	//	Assert(sum.Status, t)
+	//})
 
 	t.Run("005_ToString", func(t *testing.T) {
 		task := NewTask(dst, src, Range{
