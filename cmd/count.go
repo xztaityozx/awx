@@ -84,10 +84,10 @@ func (ct CountTask) GetRuleScript() string {
 }
 
 func (ct CountTask) CountUp() int64 {
-	command := exec.Command("awk", ct.Target, ct.GetRuleScript())
+	command := exec.Command("awk", ct.GetRuleScript(), ct.Target)
 	out, err := command.Output()
 	if err != nil {
-		Fatal("awx error: awk command failed\nScript: ", ct.GetRuleScript(), "\n", err)
+		Fatal("awx error: awk command failed\n\tScript: ", ct.GetRuleScript(), "\n", err)
 	}
 
 	str := string(out)
@@ -143,10 +143,10 @@ func (ct CountTask) CountUpWorker(dirs []string) <-chan Pair {
 				}
 				return
 			}
-			command := exec.Command("awk", p, ct.GetRuleScript())
+			command := exec.Command("awk", ct.GetRuleScript(), p)
 			out, err := command.Output()
 			if err != nil {
-				Fatal(err)
+				Fatal("awx error: awk command failed.\n\t", ct.GetRuleScript(), "\n", err)
 			}
 			str := string(out)
 			res, err := strconv.ParseInt(str, 10, 64)
