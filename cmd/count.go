@@ -27,6 +27,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strconv"
+	"strings"
 )
 
 // countCmd represents the count command
@@ -90,7 +91,7 @@ func (ct CountTask) CountUp() int64 {
 		Fatal("awx error: awk command failed\n\tScript: ", ct.GetRuleScript(), "\n", err)
 	}
 
-	str := string(out)
+	str := strings.Trim(string(out), "\n")
 	rt, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
 		Fatal(err)
@@ -148,7 +149,7 @@ func (ct CountTask) CountUpWorker(dirs []string) <-chan Pair {
 			if err != nil {
 				Fatal("awx error: awk command failed.\n\t", ct.GetRuleScript(), "\n", err)
 			}
-			str := string(out)
+			str := strings.Trim(string(out), "\n")
 			res, err := strconv.ParseInt(str, 10, 64)
 			if err != nil {
 				Fatal(err)
