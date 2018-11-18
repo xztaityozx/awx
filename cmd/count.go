@@ -106,8 +106,8 @@ func (ct CountTask) RangeSEEDCountUp() []int64 {
 		Fatal(err)
 	}
 
-	if filepath.Dir(wd) != "Result" {
-		Fatal("awx count: Invalid Directory")
+	if filepath.Base(wd) != "Result" {
+		Fatal("awx count: Invalid Directory.")
 	}
 
 	var dirs []string
