@@ -74,7 +74,6 @@ func (this JoinTask) Join() string {
 	}
 
 	dst = PathJoin(filepath.Dir(this.Files[0]), fmt.Sprintf("%s.csv", dst))
-
 	for i := 0; i < max; i++ {
 		line := fmt.Sprint(i)
 		for j := 0; j < length; j++ {
