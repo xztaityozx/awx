@@ -55,6 +55,7 @@ sx_export_data "C.csv" $www`
 		RemoveFile(task.AcePath)
 	})
 
+	// TODO: こことおらないのでなんとかしてね
 	//t.Run("003_Extract", func(t *testing.T) {
 	//	task := NewTask(dst, src, Range{
 	//		Start: 2.5,

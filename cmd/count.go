@@ -31,10 +31,11 @@ import (
 
 // countCmd represents the count command
 var countCmd = &cobra.Command{
-	Use:     "count",
-	Aliases: []string{"cnt"},
-	Short:   "",
-	Long:    ``,
+	Use:        "count",
+	Aliases:    []string{"cnt"},
+	ArgAliases: []string{"rule", "target"},
+	Short:      "",
+	Long:       ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		ct := NewCountTask(args)
 		ct.Run()
@@ -86,7 +87,7 @@ func (ct CountTask) CountUp() int64 {
 	command := exec.Command("awk", ct.Target, ct.GetRuleScript())
 	out, err := command.Output()
 	if err != nil {
-		Fatal(err)
+		Fatal("awx error: awk command failed\nScript: ", ct.GetRuleScript(), "\n", err)
 	}
 
 	str := string(out)
